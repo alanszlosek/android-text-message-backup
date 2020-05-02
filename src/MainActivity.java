@@ -2,13 +2,7 @@ package com.alanszlosek.messagebackup;
 
 import android.content.ContentResolver;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.Telephony;
-import android.util.JsonWriter;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 
@@ -23,16 +17,13 @@ import java.io.InputStreamReader;
 import java.text.MessageFormat;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlSerializer;
 
 import android.net.Uri;
 import android.os.Environment;
 import android.database.Cursor;
 import android.util.Base64;
 import android.util.Log;
-import android.util.Xml;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -148,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         JSONArray jsonArray2;
         ContentResolver contentResolver = getContentResolver();
         fileos.write("{".getBytes());
+
 
 
         // TODO: handle drafts too
