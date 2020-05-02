@@ -39,16 +39,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-/*
- * I don't like text being an attribute ... text should be the contents of the XMl tag, right?
- *
- * Think I can optimize the creation of the base64 string ... stream from inputStream right through to final string? who knows.
- *
- * TODO
- * + use system timestamp in output messages.xml files
- * - maybe need to look up the schemas and write more columns to xml so we can re-import successfully
- */
-
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MessageBackup";
@@ -65,13 +55,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-        */
     }
 
     private void addJsonFields(JSONObject target, Cursor source) {
@@ -118,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         return byteBuffer.toByteArray();
     }
 
-    // COPIED
     public void startBackup(View view) throws Exception {
         Resources res = getResources();
         TextView tv = (TextView) this.findViewById(R.id.textView);
@@ -174,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
         JSONArray jsonArray2;
         ContentResolver contentResolver = getContentResolver();
         fileos.write("{".getBytes());
-
 
 
         // TODO: handle drafts too
