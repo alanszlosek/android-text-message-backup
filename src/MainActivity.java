@@ -42,14 +42,6 @@ import androidx.core.content.ContextCompat;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MessageBackup";
-    private static final Uri CONVERSATIONS_URI = Uri.parse("content://mms-sms/conversations/");
-    private static final Uri SMS_URI = Uri.parse("content://sms/");
-    private static final String[] SMS_COLUMNS = new String[] { "address", "person", "date", "type",
-            "subject", "body" };
-    private static final Uri MMS_URI = Uri.parse("content://mms/");
-    private static final String[] MMS_COLUMNS = new String[] { "date" };
-    private static final Uri MMS_PART_URI = Uri.parse("content://mms/part");
-    private static final String[] MMS_PART_COLUMNS = new String[] { "_id", "ct", "_data", "text", "name" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
