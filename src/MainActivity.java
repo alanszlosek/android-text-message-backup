@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
                         target.put(source.getColumnName(i), source.getFloat(i));
                         break;
                     case Cursor.FIELD_TYPE_INTEGER:
-                        target.put(source.getColumnName(i), source.getInt(i));
+                        // Cursor reports an int type, but 4 bytes might not be enough,
+                        // so getLong() to be safe
+                        target.put(source.getColumnName(i), source.getLong(i));
                         break;
                     case Cursor.FIELD_TYPE_NULL:
                         target.put(source.getColumnName(i), null);
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         return byteBuffer.toByteArray();
     }
 
+    // COPIED
     public void startBackup(View view) throws Exception {
         Resources res = getResources();
         TextView tv = (TextView) this.findViewById(R.id.textView);
@@ -199,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
                 String selectionAddress = new String("msg_id=" + id);
                 Uri uriAddress = Uri.parse(MessageFormat.format("content://mms/{0}/addr", id));
                 Cursor addresses = getContentResolver().query(uriAddress, null, selectionAddress, null, null);
-                String name = null;
                 if (addresses.moveToFirst()) {
                     do {
                         JSONObject jsonObject3 = new JSONObject();
@@ -293,6 +295,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // TODO: perhaps try incremental base64 encoding
                         jsonObject2.put("base64", Base64.encodeToString(readBytes(is), Base64.DEFAULT));
+                        if (is != null) {
+                            is.close();
+                        }
                     }
                 } while (parts.moveToNext());
                 parts.close();
